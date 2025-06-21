@@ -1,0 +1,49 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">
+            jdbc:sqlserver://localhost:49709;databaseName=Estanciero;integratedSecurity=true;encrypt=true;trustServerCertificate=true
+        </property><!-- El string de conexion a la base -->
+<!--        <property name="hibernate.connection.username">admin</property>-->
+<!--        <property name="hibernate.connection.password">password</property>-->
+        <!-- JDBC connection pool settings ... using built-in test pool -->
+        <property name="connection.pool_size">1</property>
+        <!-- Select our SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <!-- Echo the SQL to stdout -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <!-- Set the current session context -->
+        <property name="current_session_context_class">thread</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- dbcp connection pool configuration -->
+        <property name="hibernate.dbcp.initialSize">5</property> <!-- Data Base Connection Pool-->
+        <property name="hibernate.dbcp.maxTotal">20</property>
+        <property name="hibernate.dbcp.maxIdle">10</property>
+        <property name="hibernate.dbcp.minIdle">5</property>
+        <property name="hibernate.dbcp.maxWaitMillis">-1</property>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.AjusteEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.BancoEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.CartaEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.CasillaEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.EscrituraEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.JuegoEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.JugadorEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.JuegosJugadorEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.MovimientoEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.TableroEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.TiposDeCartaEntity"/>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.TiposDeCasillaEntity"/>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.TiposDeJugadorEntity"/>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.TiposDeMejoraEntity"/>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.MejoraEntity"/>
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.DificultadEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.ColorEntity" />
+        <mapping class="ar.edu.utn.frc.tup.lciii.entities.EstadoEntity"/>
+    </session-factory>
+</hibernate-configuration>

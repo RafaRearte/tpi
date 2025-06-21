@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Movimiento {
     private int id;
-    private Peon peon;
+    private Jugador jugador;
     private Juego juego;
     private int posicionPrevia;
     private int nuevaPosicion;

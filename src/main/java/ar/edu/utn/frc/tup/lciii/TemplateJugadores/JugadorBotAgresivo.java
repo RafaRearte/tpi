@@ -53,7 +53,6 @@ public class JugadorBotAgresivo extends Jugador {
                     iterator.remove();
                 }
             }
-
         }
     }
 }

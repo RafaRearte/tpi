@@ -13,7 +13,49 @@ public class Casilla {
     private int id;
     private String descripcion;
     private TipoDeCasilla tipoDeCasilla;
-    private Escritura escritura;
     private boolean cobrarPagar;
     private Carta carta;
+
+    public boolean esSalida() {
+        return descripcion != null && descripcion.equalsIgnoreCase("SALIDA");
+    }
+
+    public boolean esCarcel() {
+        return descripcion != null && descripcion.toLowerCase().contains("carcel");
+    }
+
+    public boolean esVayaACarcel() {
+        return descripcion != null && descripcion.toLowerCase().contains("vaya a la carcel");
+    }
+
+    public boolean esParkingGratis() {
+        return descripcion != null && descripcion.toLowerCase().contains("parking");
+    }
+
+    public boolean esImpuesto() {
+        return descripcion != null && descripcion.toLowerCase().contains("impuesto");
+    }
+
+    public boolean esSuerte() {
+        return descripcion != null && descripcion.equalsIgnoreCase("SUERTE");
+    }
+
+    public boolean esDestino() {
+        return descripcion != null && descripcion.equalsIgnoreCase("DESTINO");
+    }
+
+    public boolean esPropiedad() {
+        return tipoDeCasilla == TipoDeCasilla.CAMPO ||
+                tipoDeCasilla == TipoDeCasilla.ESTACION ||
+                tipoDeCasilla == TipoDeCasilla.SERVICIOS_PUBLICOS;
+    }
+
+    //Fixme
+//    public boolean tieneEscritura() {
+//        return escritura != null;
+//    }
+
+    public boolean tieneCarta() {
+        return carta != null;
+    }
 }
