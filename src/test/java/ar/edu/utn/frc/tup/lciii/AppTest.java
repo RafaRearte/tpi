@@ -2,43 +2,60 @@ package ar.edu.utn.frc.tup.lciii;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
-    private final InputStream systemIn = System.in;
-    private final PrintStream systemOut = System.out;
 
-    private ByteArrayOutputStream testOut;
+    private final PrintStream originalOut = System.out;
+    private final InputStream originalIn = System.in;
+    private ByteArrayOutputStream outputStream;
 
     @BeforeEach
-    public void setUpOutput() {
-        testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
+    void setUp() {
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
     }
 
     @AfterEach
-    public void restoreSystemInputOutput() {
-        System.setIn(systemIn);
-        System.setOut(systemOut);
+    void tearDown() {
+        System.setOut(originalOut);
+        System.setIn(originalIn);
     }
 
     @Test
-    @Disabled
-    public void testMain() {
-        App app = new App();
-        App.main(null);
-        assertEquals("Hello, TPI Estanciero." + System.lineSeparator(),
-                getOutput());
+    void testMainSinExcepciones() {
+        String simulatedInput = "0\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStream);
+
+        assertDoesNotThrow(() -> {
+            App.main(new String[]{});
+        });
     }
 
-    private String getOutput() {
-        return testOut.toString();
+    @Test
+    void testSalidaMenu() {
+        String simulatedInput = "0\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStream);
+
+        App.main(new String[]{});
+
+        String output = outputStream.toString();
+        assertFalse(output.isEmpty(), "La aplicación debería producir alguna salida");
+        assertTrue(output.contains("--------------------------------------------------------------"), 
+                  "La salida debería contener el separador de bienvenida");
+    }
+
+    @Test
+    void testAppExiste() {
+        assertNotNull(App.class, "La clase App debe existir");
     }
 }

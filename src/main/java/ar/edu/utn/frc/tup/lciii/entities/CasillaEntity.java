@@ -2,26 +2,32 @@ package ar.edu.utn.frc.tup.lciii.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "Casillas", schema = "dbo")
+@Setter
+@Getter
+@Table (name = "Casilla")
 public class CasillaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCasilla", nullable = false)
-    private Integer id;
+    private Long idCasilla;
 
-    @Column(name = "descripcion", length = 50)
-    private String descripcion;
+    @ManyToOne
+    @JoinColumn(name = "fk_tablero")
+    @Column
+    private TableroEntity fk_tablero;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idTipoDeCasilla")
-    private TiposDeCasillaEntity idTipoDeCasilla;
+    @ManyToOne
+    @JoinColumn(name = "fk_propiedad")
+    @Column
+    private PropiedadEntity fk_propiedad;
 
-    @Column(name = "cobrarPagar")
-    private Boolean cobrarPagar;
-
+    @ManyToOne
+    @JoinColumn(name = "fk_tipoCasilla")
+    @Column
+    private TipoCasillaEntity fk_tipoCasilla;
 }

@@ -2,19 +2,23 @@ package ar.edu.utn.frc.tup.lciii.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "Bancos", schema = "dbo")
+@Setter
+@Getter
+@Table(name = "Bancos")
 public class BancoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idBanco", nullable = false)
-    private Integer id;
+    @Column
+    private Long idBanco;
 
-    @Column(name = "saldo")
-    private Integer saldo;
+    @Column
+    private String nombre;
 
+    @Column
+    private double balance;
 }

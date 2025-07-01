@@ -2,24 +2,25 @@ package ar.edu.utn.frc.tup.lciii.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
-@Table(name = "Tableros", schema = "dbo")
+@Setter
+@Getter
+@Table(name = "board")
+@NoArgsConstructor
 public class TableroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTablero", nullable = false)
-    private Integer id;
+    private Long id_board;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCasilla")
-    private CasillaEntity idCasilla;
+    @Column
+    private Long fk_jugador;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCarta")
-    private CartaEntity idCarta;
+    @Column
+    private int position;
 
+    @Column
+    private Long fk_position;
 }
